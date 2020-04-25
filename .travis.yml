@@ -5,9 +5,6 @@ services:
 before_install:
   - docker build -t foxandxss/react-test -f ./client/Dockerfile.dev ./client
 
-script:
-  - docker run -e CI=true foxandxss/react-test npm test
-
 after_success:
   - docker build -t foxandxss/multi-client ./client
   - docker build -t foxandxss/multi-nginx ./nginx
