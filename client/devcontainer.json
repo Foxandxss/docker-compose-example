@@ -1,0 +1,9 @@
+{
+  "name": "React Sample",
+  "dockerFile": "Dockerfile.dev",
+  "appPort": 3000,
+  "extensions": ["dbaeumer.vscode-eslint"],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  }
+}
