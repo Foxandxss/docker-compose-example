@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t foxandxss/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true foxandxss/react-test npm test
+
+after_success:
+  - docker build -t foxandxss/multi-client ./client
+  - docker build -t foxandxss/multi-nginx ./nginx
+  - docker build -t foxandxss/multi-server ./server
+  - docker build -t foxandxss/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --pasword-stdin
+  - docker push foxandxss/multi-client
+  - docker push foxandxss/multi-nginx
+  - docker push foxandxss/multi-server
+  - docker push foxandxss/multi-worker
