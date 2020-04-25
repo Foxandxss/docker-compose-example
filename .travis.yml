@@ -13,7 +13,7 @@ after_success:
   - docker build -t foxandxss/multi-nginx ./nginx
   - docker build -t foxandxss/multi-server ./server
   - docker build -t foxandxss/multi-worker ./worker
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --pasword-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push foxandxss/multi-client
   - docker push foxandxss/multi-nginx
   - docker push foxandxss/multi-server
